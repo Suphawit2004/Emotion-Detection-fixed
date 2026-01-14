@@ -377,7 +377,7 @@ export default function Home() {
 
       <div className="flex gap-3">
         <button
-          className="px-4 py-2 rounded bg-gray-300 text-white"
+          className="px-4 py-2 rounded bg-gray-500 text-white"
           onClick={startCamera}
         >
           Start Camera

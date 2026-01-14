@@ -392,7 +392,7 @@ export default function Home() {
         />
       </div>
 
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-sky-600">
         หมายเหตุ: ต้องกดปุ่ม Start เพื่อขอสิทธิ์เปิดกล้อง
       </p>
     </main>

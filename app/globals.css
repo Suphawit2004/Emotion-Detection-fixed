@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bg-image: url('/lightmode.gif');
 }
 
 @theme inline {
@@ -14,10 +15,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #030303;
     --foreground: #ededed;
+    --bg-image: url('/darkmode.jpg');
   }
 }
+
 
 body {
   background: var(--background);

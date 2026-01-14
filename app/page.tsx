@@ -111,44 +111,44 @@ export default function Home() {
   //   });
   // }
   async function loadOpenCV() {
-  if (typeof window === "undefined") return;
+    if (typeof window === "undefined") return;
 
-  // ready แล้ว
-  if ((window as any).cv?.Mat) {
-    cvRef.current = (window as any).cv;
-    return;
-  }
+    // ready แล้ว
+    if ((window as any).cv?.Mat) {
+      cvRef.current = (window as any).cv;
+      return;
+    }
 
-  await new Promise<void>((resolve, reject) => {
-    const script = document.createElement("script");
-    script.src = "/opencv/opencv.js";
-    script.async = true;
+    await new Promise<void>((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "/opencv/opencv.js";
+      script.async = true;
 
-    script.onload = () => {
-      const cv = (window as any).cv;
-      if (!cv) return reject(new Error("OpenCV โหลดแล้วแต่ window.cv ไม่มีค่า"));
+      script.onload = () => {
+        const cv = (window as any).cv;
+        if (!cv) return reject(new Error("OpenCV โหลดแล้วแต่ window.cv ไม่มีค่า"));
 
-      const waitReady = () => {
-        if ((window as any).cv?.Mat) {
-          cvRef.current = (window as any).cv;
-          resolve();
+        const waitReady = () => {
+          if ((window as any).cv?.Mat) {
+            cvRef.current = (window as any).cv;
+            resolve();
+          } else {
+            setTimeout(waitReady, 50);
+          }
+        };
+
+        // บาง build มี callback บาง build พร้อมทันที
+        if ("onRuntimeInitialized" in cv) {
+          cv.onRuntimeInitialized = () => waitReady();
         } else {
-          setTimeout(waitReady, 50);
+          waitReady();
         }
       };
 
-      // บาง build มี callback บาง build พร้อมทันที
-      if ("onRuntimeInitialized" in cv) {
-        cv.onRuntimeInitialized = () => waitReady();
-      } else {
-        waitReady();
-      }
-    };
-
-    script.onerror = () => reject(new Error("โหลด /opencv/opencv.js ไม่สำเร็จ"));
-    document.body.appendChild(script);
-  });
-}
+      script.onerror = () => reject(new Error("โหลด /opencv/opencv.js ไม่สำเร็จ"));
+      document.body.appendChild(script);
+    });
+  }
 
 
   // Load Haar cascade file into OpenCV FS
@@ -165,7 +165,7 @@ export default function Home() {
     const cascadePath = "haarcascade_frontalface_default.xml";
     try {
       cv.FS_unlink(cascadePath);
-    } catch {}
+    } catch { }
     cv.FS_createDataFile("/", cascadePath, data, true, false, false);
 
     const faceCascade = new cv.CascadeClassifier();

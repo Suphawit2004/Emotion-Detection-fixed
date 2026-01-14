@@ -384,7 +384,7 @@ export default function Home() {
         <button
           className="px-4 py-2 rounded font-semibold transition-colors
                      bg-gray-900 text-white hover:bg-gray-700
-                     dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
+                     dark:bg-white dark:text-slate-400 dark:hover:bg-gray-200"
           onClick={startCamera}
         >
           Start Camera

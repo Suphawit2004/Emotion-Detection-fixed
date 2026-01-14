@@ -365,26 +365,19 @@ export default function Home() {
   }, []);
 
   return (
-<main className="min-h-screen p-6 space-y-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-        Face Emotion (OpenCV + YOLO11-CLS)
-      </h1>
+    <main className="min-h-screen p-6 space-y-4">
+      <h1 className="text-2xl font-bold">Face Emotion (OpenCV + YOLO11-CLS)</h1>
 
       <div className="space-y-2">
-        <div className="text-sm font-medium">
-          สถานะ: <span className="opacity-80">{status}</span>
-        </div>
-        <div className="text-sm font-medium">
-          Emotion: <b className="text-indigo-600 dark:text-indigo-400">{emotion}</b> | 
-          Conf: <b className="text-indigo-600 dark:text-indigo-400">{(conf * 100).toFixed(1)}%</b>
+        <div className="text-sm">สถานะ: {status}</div>
+        <div className="text-sm">
+          Emotion: <b>{emotion}</b> | Conf: <b>{(conf * 100).toFixed(1)}%</b>
         </div>
       </div>
 
       <div className="flex gap-3">
         <button
-          className="px-4 py-2 rounded font-semibold transition-colors
-                     bg-gray-900 text-white hover:bg-gray-700
-                     dark:bg-white dark:text-gray-400 dark:hover:bg-gray-200"
+          className="px-4 py-2 rounded bg-black text-white"
           onClick={startCamera}
         >
           Start Camera
@@ -395,11 +388,11 @@ export default function Home() {
         <video ref={videoRef} className="hidden" playsInline />
         <canvas
           ref={canvasRef}
-          className="w-full rounded border border-gray-300 dark:border-gray-700 bg-black"
+          className="w-full rounded border"
         />
       </div>
 
-      <p className="text-sm text-sky-600 dark:text-sky-400">
+      <p className="text-sm text-sky-600">
         หมายเหตุ: ต้องกดปุ่ม Start เพื่อขอสิทธิ์เปิดกล้อง
       </p>
     </main>

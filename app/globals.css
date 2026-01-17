@@ -16,14 +16,14 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --bg-image: url('/darkmode.jpg');
+    --bg-image: url('/darkmode.gif');
   }
 }
 
 .dark {
   --background: #0a0a0a;
   --foreground: #ededed;
-  --bg-image: url('/darkmode.jpg'); 
+  --bg-image: url('/darkmode.gif'); 
 }
 
 body {

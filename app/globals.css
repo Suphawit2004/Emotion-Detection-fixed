@@ -1,32 +1,60 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --bg-image: url('/lightmode.gif');
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ใส่ไฟล์รูปภาพของคุณในโฟลเดอร์ public */
+  --bg-image: url('/lightmode.gif'); 
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #030303;
+    --background: #0a0a0a;
     --foreground: #ededed;
     --bg-image: url('/darkmode.jpg');
   }
 }
 
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --bg-image: url('/darkmode.jpg'); 
+}
+
 body {
+  color: var(--foreground);
+  background-color: var(--background);
   background-image: var(--bg-image);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  margin: 0;
+  transition: color 0.3s ease, background-image 0.3s ease;
+}
+
+/* Animations */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.animate-scanline {
+  animation: scanline 2.5s linear infinite;
+}
+
+@keyframes bounce-short {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-bounce-short {
+  animation: bounce-short 2s infinite ease-in-out;
 }
